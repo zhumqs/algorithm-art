@@ -1,4 +1,4 @@
-package com.java.juc;
+package com.other.juc;
 
 /*
  * 模拟 CAS 算法

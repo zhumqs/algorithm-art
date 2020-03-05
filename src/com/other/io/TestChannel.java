@@ -1,4 +1,4 @@
-package com.java.io;
+package com.other.io;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

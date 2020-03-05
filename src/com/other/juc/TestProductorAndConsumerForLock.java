@@ -1,4 +1,4 @@
-package com.java.juc;
+package com.other.juc;
 
 /*
  * 生产者消费者案例：

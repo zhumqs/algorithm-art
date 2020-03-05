@@ -1,4 +1,4 @@
-package com.java.juc;
+package com.other.juc;
 
 /*
  * 题目：判断打印的 "one" or "two" ？

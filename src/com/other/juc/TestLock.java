@@ -1,4 +1,4 @@
-package com.java.juc;
+package com.other.juc;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
