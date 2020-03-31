@@ -361,6 +361,8 @@ public class _1114_PrintInOrder implements _1114_PrintInOrderInterface {
         runner(new PrintInOrder4());
         runner(new PrintInOrder5());
 
+        int len = args.length;
+        System.out.println(len);
 //        try {
 //            new _1114_PrintInOrder().testVolatile();
 //        } catch (InterruptedException e) {
