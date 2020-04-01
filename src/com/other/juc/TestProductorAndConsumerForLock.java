@@ -1,5 +1,11 @@
 package com.other.juc;
 
+import com.sun.org.apache.bcel.internal.generic.LCONST;
+
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 /*
  * 生产者消费者案例：
  */
@@ -14,13 +20,12 @@ public class TestProductorAndConsumerForLock {
 		new Thread(pro, "生产者 A").start();
 		new Thread(con, "消费者 B").start();
 
-//		 new Thread(pro, "生产者 C").start();
-//		 new Thread(con, "消费者 D").start();
+		 new Thread(pro, "生产者 C").start();
+		 new Thread(con, "消费者 D").start();
 	}
 
 }
 
-/*
 class Clerk {
 	private int product = 0;
 
@@ -32,7 +37,8 @@ class Clerk {
 		lock.lock();
 
 		try {
-			if (product >= 1) { // 为了避免虚假唤醒，应该总是使用在循环中。
+			// 这里是if是错误的
+			while (product >= 1) { // 为了避免虚假唤醒，应该总是使用在循环中。
 				System.out.println("产品已满！");
 
 				try {
@@ -40,6 +46,7 @@ class Clerk {
 				} catch (InterruptedException e) {
 				}
 
+				System.out.println("produce被唤醒了！");
 			}
 			System.out.println(Thread.currentThread().getName() + " : "
 					+ ++product);
@@ -51,18 +58,31 @@ class Clerk {
 
 	}
 
+	public void test() {
+		synchronized (lock) {
+			try {
+				// 每个类都有wait方法
+				wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	// 卖货
 	public void sale() {
 		lock.lock();
 
 		try {
-			if (product <= 0) {
+			while (product <= 0) {
 				System.out.println("缺货！");
 
 				try {
 					condition.await();
 				} catch (InterruptedException e) {
 				}
+
+				System.out.println("consumer 被唤醒了！");
 			}
 
 			System.out.println(Thread.currentThread().getName() + " : "
@@ -115,4 +135,4 @@ class Consumer implements Runnable {
 		}
 	}
 
-}*/
+}
