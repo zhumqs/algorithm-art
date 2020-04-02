@@ -153,6 +153,7 @@ public class _1114_PrintInOrder implements _1114_PrintInOrderInterface {
 
         @Override
         public void first(Runnable printFirst) throws InterruptedException {
+            //lock.lock(): 如果该锁不可用，则出于线程调度目的，当前线程将被禁用，并处于休眠状态，直到获得该锁为止。
             lock.lock();
             try {
                 printFirst.run();
